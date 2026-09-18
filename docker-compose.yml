@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgis/postgis:15-3.3
+    container_name: polarops-db
+    environment:
+      POSTGRES_USER: polar_user
+      POSTGRES_PASSWORD: polar_password
+      POSTGRES_DB: polarops
+    ports:
+      - "5432:5432"
+    volumes:
+      - polarops_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  polarops_data:
